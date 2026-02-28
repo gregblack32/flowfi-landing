@@ -1,0 +1,10 @@
+{
+  "name": "flowfi-landing",
+  "version": "1.0.0",
+  "description": "FlowFi - AI-Powered Financial OS for Australian Freelancers",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve ."
+  }
+}
