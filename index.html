@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FlowFi — AI-Powered Financial OS for Australian Freelancers</title>
+<meta name="description" content="FlowFi is the AI-powered financial operating system built for Australian freelancers and sole traders. Auto-categorise transactions, generate invoices, prepare BAS, and forecast cash flow — all in one beautiful app.">
+<meta name="keywords" content="freelancer accounting Australia, sole trader BAS tool, freelance invoice app Australia, AI bookkeeping freelancers, GST calculator Australia, ABN tax tool">
+<meta property="og:title" content="FlowFi — AI-Powered Financial OS for Australian Freelancers">
+<meta property="og:description" content="Stop dreading tax time. FlowFi auto-categorises your transactions, prepares your BAS, tracks deductions, and forecasts your cash flow — all powered by AI.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://flowfi.com.au">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://flowfi.com.au">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --purple:#6C5CE7;--blue:#00D2FF;--dark:#0F0F23;--dark2:#1A1A2E;--grey:#636E72;
+  --light:#F8F9FA;--white:#FFFFFF;--green:#00B894;--red:#E17055;--yellow:#FDCB6E;
+  --gradient:linear-gradient(135deg,#6C5CE7,#00D2FF);
+  --font:'Inter',system-ui,-apple-system,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);color:var(--dark);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+/* -- NAV -- */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;transition:all 0.3s}
+nav.scrolled{background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);box-shadow:0 1px 20px rgba(0,0,0,0.08)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:26px;font-weight:800;color:var(--dark)}
+.logo span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{font-size:14px;font-weight:500;color:var(--grey);transition:color 0.2s}
+.nav-links a:hover{color:var(--dark)}
+.nav-cta{background:var(--gradient);color:#fff!important;padding:10px 24px;border-radius:50px;font-weight:600;font-size:14px;transition:transform 0.2s,box-shadow 0.2s}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 15px rgba(108,92,231,0.4)}
+
+/* -- HERO -- */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:120px 24px 80px}
+.hero::before{content:'';position:absolute;top:-50%;right:-30%;width:80%;height:150%;background:radial-gradient(ellipse,rgba(108,92,231,0.06) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-30%;left:-20%;width:60%;height:100%;background:radial-gradient(ellipse,rgba(0,210,255,0.05) 0%,transparent 70%);pointer-events:none}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(108,92,231,0.08);color:var(--purple);padding:8px 16px;border-radius:50px;font-size:13px;font-weight:600;margin-bottom:24px}
+.hero-badge span{animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
+.hero h1{font-size:clamp(36px,5vw,56px);font-weight:800;line-height:1.1;margin-bottom:20px;letter-spacing:-1px}
+.hero h1 .accent{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:18px;color:var(--grey);line-height:1.7;margin-bottom:32px;max-width:520px}
+.hero-form{display:flex;gap:12px;max-width:480px}
+.hero-form input{flex:1;padding:14px 20px;border:2px solid #E0E0E0;border-radius:12px;font-size:15px;font-family:var(--font);transition:border 0.2s;outline:none}
+.hero-form input:focus{border-color:var(--purple)}
+.hero-form button{padding:14px 28px;background:var(--gradient);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;font-family:var(--font);cursor:pointer;white-space:nowrap;transition:transform 0.2s,box-shadow 0.2s}
+.hero-form button:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(108,92,231,0.35)}
+.hero-social-proof{display:flex;align-items:center;gap:12px;margin-top:20px;font-size:13px;color:var(--grey)}
+.hero-avatars{display:flex}
+.hero-avatars div{width:32px;height:32px;border-radius:50%;border:2px solid #fff;margin-left:-8px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff}
+.hero-avatars div:first-child{margin-left:0}
+
+/* Hero mockup */
+.hero-mockup{position:relative}
+.mockup-window{background:var(--dark2);border-radius:16px;overflow:hidden;box-shadow:0 25px 80px rgba(0,0,0,0.15);border:1px solid rgba(255,255,255,0.08)}
+.mockup-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;background:rgba(0,0,0,0.3)}
+.mockup-dot{width:10px;height:10px;border-radius:50%;background:var(--red)}
+.mockup-dot:nth-child(2){background:var(--yellow)}
+.mockup-dot:nth-child(3){background:var(--green)}
+.mockup-content{padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mock-card{background:rgba(255,255,255,0.06);border-radius:10px;padding:16px;border:1px solid rgba(255,255,255,0.05)}
+.mock-card .label{font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:6px}
+.mock-card .value{font-size:22px;font-weight:700;color:#fff}
+.mock-card .change{font-size:11px;margin-top:4px}
+.mock-card .change.up{color:var(--green)}
+.mock-card .change.down{color:var(--red)}
+.mock-chart{grid-column:1/-1;background:rgba(255,255,255,0.06);border-radius:10px;padding:16px;border:1px solid rgba(255,255,255,0.05);height:120px;position:relative;overflow:hidden}
+.mock-chart .label{font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:8px}
+.chart-line{position:absolute;bottom:16px;left:16px;right:16px;height:60px}
+.chart-line svg{width:100%;height:100%}
+.floating-badge{position:absolute;background:var(--white);padding:10px 16px;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.12);display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;animation:float 3s ease-in-out infinite}
+.floating-badge.ai{top:30%;right:-20px;z-index:2}
+.floating-badge.tax{bottom:20%;left:-20px;z-index:2;animation-delay:1.5s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* -- STATS BAR -- */
+.stats-bar{background:var(--dark);padding:48px 24px}
+.stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center}
+.stat-item .num{font-size:clamp(28px,4vw,40px);font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-item .desc{font-size:14px;color:rgba(255,255,255,0.6);margin-top:4px}
+
+/* -- FEATURES -- */
+.features{padding:100px 24px}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-label{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--purple);margin-bottom:12px;text-align:center}
+.section-title{font-size:clamp(28px,4vw,42px);font-weight:800;text-align:center;margin-bottom:16px;letter-spacing:-0.5px}
+.section-desc{font-size:17px;color:var(--grey);text-align:center;max-width:640px;margin:0 auto 60px}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.feature-card{background:var(--white);border:1px solid #EAEAEA;border-radius:16px;padding:32px;transition:all 0.3s;position:relative;overflow:hidden}
+.feature-card:hover{border-color:var(--purple);transform:translateY(-4px);box-shadow:0 12px 40px rgba(108,92,231,0.1)}
+.feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient);opacity:0;transition:opacity 0.3s}
+.feature-card:hover::before{opacity:1}
+.feature-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px}
+.feature-card h3{font-size:18px;font-weight:700;margin-bottom:8px}
+.feature-card p{font-size:14px;color:var(--grey);line-height:1.6}
+
+/* -- HOW IT WORKS -- */
+.how-it-works{padding:100px 24px;background:var(--light)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;position:relative}
+.steps::before{content:'';position:absolute;top:36px;left:12.5%;right:12.5%;height:2px;background:linear-gradient(90deg,var(--purple),var(--blue));opacity:0.2}
+.step{text-align:center;position:relative}
+.step-num{width:72px;height:72px;border-radius:50%;background:var(--gradient);color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;margin:0 auto 20px;position:relative;z-index:1}
+.step h3{font-size:16px;font-weight:700;margin-bottom:8px}
+.step p{font-size:14px;color:var(--grey);max-width:220px;margin:0 auto}
+
+/* -- PRICING -- */
+.pricing{padding:100px 24px}
+.pricing-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;max-width:800px;margin:0 auto}
+.price-card{border:2px solid #EAEAEA;border-radius:20px;padding:40px;position:relative;transition:all 0.3s}
+.price-card.featured{border-color:var(--purple);box-shadow:0 12px 50px rgba(108,92,231,0.15)}
+.price-card.featured::before{content:'MOST POPULAR';position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--gradient);color:#fff;padding:6px 20px;border-radius:50px;font-size:11px;font-weight:700;letter-spacing:1px}
+.price-card .plan{font-size:18px;font-weight:700;margin-bottom:4px}
+.price-card .price{font-size:48px;font-weight:800;margin:16px 0 4px}
+.price-card .price span{font-size:16px;font-weight:500;color:var(--grey)}
+.price-card .period{font-size:14px;color:var(--grey);margin-bottom:24px}
+.price-card ul{list-style:none;margin-bottom:32px}
+.price-card li{padding:8px 0;font-size:14px;color:var(--dark);display:flex;align-items:center;gap:10px}
+.price-card li::before{content:'\2713';color:var(--green);font-weight:700;font-size:16px}
+.price-card .price-btn{display:block;text-align:center;padding:14px;border-radius:12px;font-weight:700;font-size:15px;transition:all 0.2s;font-family:var(--font)}
+.price-card .price-btn.primary{background:var(--gradient);color:#fff}
+.price-card .price-btn.primary:hover{box-shadow:0 6px 20px rgba(108,92,231,0.35);transform:translateY(-1px)}
+.price-card .price-btn.secondary{background:var(--light);color:var(--dark)}
+.price-card .price-btn.secondary:hover{background:#E8E8E8}
+
+/* -- TESTIMONIAL -- */
+.testimonial{padding:100px 24px;background:var(--dark);color:#fff}
+.testimonial-inner{max-width:800px;margin:0 auto;text-align:center}
+.testimonial blockquote{font-size:clamp(20px,3vw,28px);font-weight:500;line-height:1.6;margin-bottom:32px;font-style:italic;opacity:0.95}
+.testimonial .author{display:flex;align-items:center;justify-content:center;gap:16px}
+.testimonial .author-avatar{width:48px;height:48px;border-radius:50%;background:var(--gradient);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px}
+.testimonial .author-info{text-align:left}
+.testimonial .author-name{font-weight:700;font-size:16px}
+.testimonial .author-role{font-size:13px;opacity:0.6}
+
+/* -- AUSTRALIAN -- */
+.australian{padding:100px 24px;background:var(--light)}
+.au-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.au-card{background:var(--white);border-radius:16px;padding:28px;text-align:center;border:1px solid #EAEAEA}
+.au-icon{font-size:36px;margin-bottom:12px}
+.au-card h3{font-size:16px;font-weight:700;margin-bottom:8px}
+.au-card p{font-size:13px;color:var(--grey);line-height:1.6}
+
+/* -- CTA -- */
+.final-cta{padding:100px 24px;text-align:center}
+.final-cta h2{font-size:clamp(28px,4vw,44px);font-weight:800;margin-bottom:16px;letter-spacing:-0.5px}
+.final-cta p{font-size:17px;color:var(--grey);max-width:540px;margin:0 auto 36px}
+.cta-form{display:flex;gap:12px;max-width:480px;margin:0 auto}
+.cta-form input{flex:1;padding:16px 20px;border:2px solid #E0E0E0;border-radius:12px;font-size:15px;font-family:var(--font);outline:none}
+.cta-form input:focus{border-color:var(--purple)}
+.cta-form button{padding:16px 32px;background:var(--gradient);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;font-family:var(--font);cursor:pointer;white-space:nowrap;transition:all 0.2s}
+.cta-form button:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(108,92,231,0.35)}
+.cta-note{font-size:13px;color:var(--grey);margin-top:12px}
+
+/* -- FOOTER -- */
+footer{background:var(--dark);color:rgba(255,255,255,0.6);padding:60px 24px 32px}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+.footer-brand .logo{font-size:22px;color:#fff;margin-bottom:12px}
+.footer-brand .logo span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.footer-brand p{font-size:13px;line-height:1.7;max-width:280px}
+.footer-col h4{color:#fff;font-size:14px;font-weight:700;margin-bottom:16px}
+.footer-col a{display:block;font-size:13px;padding:4px 0;transition:color 0.2s}
+.footer-col a:hover{color:var(--blue)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;display:flex;justify-content:space-between;align-items:center;font-size:12px}
+
+/* -- MODAL -- */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);z-index:200;align-items:center;justify-content:center}
+.modal-overlay.active{display:flex}
+.modal{background:#fff;border-radius:20px;padding:48px;max-width:480px;width:90%;text-align:center;position:relative;animation:modalIn 0.3s}
+@keyframes modalIn{from{opacity:0;transform:scale(0.95)}to{opacity:1;transform:scale(1)}}
+.modal-close{position:absolute;top:16px;right:16px;background:none;border:none;font-size:24px;cursor:pointer;color:var(--grey)}
+.modal h2{font-size:24px;font-weight:800;margin-bottom:8px}
+.modal p{font-size:14px;color:var(--grey);margin-bottom:24px}
+.modal .check-icon{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#00B894,#00D2FF);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:28px;color:#fff}
+
+/* -- RESPONSIVE -- */
+@media(max-width:968px){
+  .hero-inner{grid-template-columns:1fr;text-align:center}
+  .hero p{margin-left:auto;margin-right:auto}
+  .hero-form{max-width:100%}
+  .hero-mockup{display:none}
+  .features-grid{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .steps::before{display:none}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .stats-inner{grid-template-columns:1fr 1fr}
+  .au-grid{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .nav-links a:not(.nav-cta){display:none}
+  .features-grid{grid-template-columns:1fr}
+  .pricing-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .hero-form{flex-direction:column}
+  .hero-form button{width:100%}
+  .cta-form{flex-direction:column}
+  .cta-form button{width:100%}
+  .footer-top{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;gap:8px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="logo">Flow<span>Fi</span></div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#join" class="nav-cta">Join Waitlist</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge"><span>🟢</span> Now accepting early access signups</div>
+      <h1>Your finances on <span class="accent">autopilot.</span><br>Built for Aussie freelancers.</h1>
+      <p>FlowFi is the AI-powered financial OS that auto-categorises your transactions, prepares your BAS, tracks every deduction, and forecasts your cash flow — so you can focus on the work you love.</p>
+      <form class="hero-form" id="heroForm" onsubmit="return handleWaitlist(event, 'hero')">
+        <input type="email" placeholder="you@freelance.com.au" required id="heroEmail" autocomplete="email">
+        <button type="submit">Join Waitlist</button>
+      </form>
+      <div class="hero-social-proof">
+        <div class="hero-avatars">
+          <div style="background:#6C5CE7">SC</div>
+          <div style="background:#00B894">JL</div>
+          <div style="background:#E17055">TW</div>
+          <div style="background:#0984E3">PS</div>
+        </div>
+        <span><strong id="waitlistCount">127</strong> freelancers already on the waitlist</span>
+      </div>
+    </div>
+    <div class="hero-mockup">
+      <div class="floating-badge ai">🤖 AI categorised 23 transactions</div>
+      <div class="floating-badge tax">🧾 BAS ready to lodge</div>
+      <div class="mockup-window">
+        <div class="mockup-bar">
+          <div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div>
+          <span style="margin-left:auto;font-size:11px;color:rgba(255,255,255,0.3)">app.flowfi.com.au</span>
+        </div>
+        <div class="mockup-content">
+          <div class="mock-card">
+            <div class="label">Total Income</div>
+            <div class="value">$14,820</div>
+            <div class="change up">↑ 12% this month</div>
+          </div>
+          <div class="mock-card">
+            <div class="label">Tax Estimate</div>
+            <div class="value">$3,205</div>
+            <div class="change down">Set aside 21.6%</div>
+          </div>
+          <div class="mock-card">
+            <div class="label">Deductions Found</div>
+            <div class="value">$4,180</div>
+            <div class="change up">↑ AI found 3 new</div>
+          </div>
+          <div class="mock-card">
+            <div class="label">Cash Forecast (90d)</div>
+            <div class="value">$22,400</div>
+            <div class="change up">Looking healthy</div>
+          </div>
+          <div class="mock-chart">
+            <div class="label">Income vs Expenses — Last 6 Months</div>
+            <div class="chart-line">
+              <svg viewBox="0 0 300 50" preserveAspectRatio="none">
+                <polyline points="0,40 50,30 100,35 150,20 200,15 250,10 300,5" fill="none" stroke="#6C5CE7" stroke-width="2"/>
+                <polyline points="0,45 50,42 100,38 150,40 200,35 250,30 300,28" fill="none" stroke="#00D2FF" stroke-width="2" stroke-dasharray="4"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item"><div class="num">1.1M+</div><div class="desc">Independent contractors in Australia</div></div>
+    <div class="stat-item"><div class="num">32</div><div class="desc">Built-in financial tools</div></div>
+    <div class="stat-item"><div class="num">10 min</div><div class="desc">Average BAS prep time</div></div>
+    <div class="stat-item"><div class="num">$4,200</div><div class="desc">Avg. extra deductions found</div></div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="section-inner">
+    <div class="section-label">Features</div>
+    <div class="section-title">Everything a freelancer needs. Nothing they don't.</div>
+    <div class="section-desc">FlowFi replaces your spreadsheets, your accounting app, your receipt drawer, and that BAS anxiety — with one intelligent platform.</div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(108,92,231,0.1)">🤖</div>
+        <h3>AI Transaction Categorisation</h3>
+        <p>Connects to your bank via Basiq. Transactions auto-categorise with 95% accuracy. Create custom rules for the rest.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(0,184,148,0.1)">🧾</div>
+        <h3>BAS Prep in 10 Minutes</h3>
+        <p>GST automatically calculated. BAS fields pre-filled. Review, approve, and lodge — no accountant needed for quarterly BAS.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(0,210,255,0.1)">📝</div>
+        <h3>Professional Invoicing</h3>
+        <p>Beautiful invoices with your branding. Add line items, apply GST, send via email, and track payment status in real-time.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(225,112,85,0.1)">📸</div>
+        <h3>Smart Receipt Scanning</h3>
+        <p>Snap a photo, AI extracts the details. Auto-matches to transactions and categorises the expense. Never miss a deduction.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(253,203,110,0.1)">🔮</div>
+        <h3>Cash Flow Forecasting</h3>
+        <p>See 90 days ahead with AI-powered predictions. Know when quiet periods are coming and plan accordingly.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(108,92,231,0.1)">💰</div>
+        <h3>Tax & Super Calculator</h3>
+        <p>Real-time tax estimates using current ATO marginal rates, Medicare levy, and 11.5% super. Always know what you owe.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(0,184,148,0.1)">🚗</div>
+        <h3>Mileage & Trip Logging</h3>
+        <p>Log business trips with the ATO rate of 85c/km. Track home office hours at 67c/hr. Every deduction, captured.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(0,210,255,0.1)">👥</div>
+        <h3>Client Profitability</h3>
+        <p>See which clients generate the most income. Spot concentration risk. Make data-driven decisions about who to work with.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(225,112,85,0.1)">📤</div>
+        <h3>One-Click Accountant Export</h3>
+        <p>Generate a complete tax pack — P&L, deductions summary, BAS history, and transaction CSV — ready for your accountant.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works" id="how-it-works">
+  <div class="section-inner">
+    <div class="section-label">How It Works</div>
+    <div class="section-title">From signup to sorted in 5 minutes</div>
+    <div class="section-desc">No complex setup. No data entry. Just connect your bank and let FlowFi do the heavy lifting.</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Connect Your Bank</h3>
+        <p>Securely link your bank account via Basiq. 256-bit encryption, ADR-accredited.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>AI Categorises Everything</h3>
+        <p>FlowFi analyses your transactions and auto-categorises income and expenses.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>See Your Full Picture</h3>
+        <p>Dashboard shows income, tax estimate, deductions, cash forecast, and health score.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Lodge with Confidence</h3>
+        <p>BAS pre-filled, EOFY report ready, accountant export one click away.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="section-inner">
+    <div class="section-label">Pricing</div>
+    <div class="section-title">Simple, transparent pricing</div>
+    <div class="section-desc">No percentage of income. No hidden fees. Just one flat rate for everything.</div>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="plan">FlowFi Free</div>
+        <div class="price">$0<span>/month</span></div>
+        <div class="period">Free forever</div>
+        <ul>
+          <li>Dashboard & financial overview</li>
+          <li>50 transactions per month</li>
+          <li>Basic invoicing (3/month)</li>
+          <li>Tax estimate calculator</li>
+          <li>GST calculator</li>
+        </ul>
+        <a href="#join" class="price-btn secondary">Start Free</a>
+      </div>
+      <div class="price-card featured">
+        <div class="plan">FlowFi Pro</div>
+        <div class="price">$29<span>/month</span></div>
+        <div class="period">or $290/year (save $58)</div>
+        <ul>
+          <li>Everything in Free, plus:</li>
+          <li>Unlimited transactions & invoices</li>
+          <li>AI categorisation & bank rules</li>
+          <li>BAS preparation & lodgement</li>
+          <li>Receipt scanning (unlimited)</li>
+          <li>Cash flow forecasting (90 days)</li>
+          <li>Mileage & home office tracking</li>
+          <li>Client profitability analysis</li>
+          <li>EOFY report & accountant export</li>
+          <li>AI Accountant chat assistant</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="#join" class="price-btn primary">Join Waitlist</a>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:24px;font-size:14px;color:var(--grey)">🎉 <strong>Founding member offer:</strong> First 100 signups get $19/mo locked for life</p>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial">
+  <div class="testimonial-inner">
+    <div class="section-label" style="color:var(--blue)">Early Feedback</div>
+    <blockquote>"I've been dreading BAS time for 6 years. When I saw FlowFi auto-fill every field in under 10 minutes, I nearly cried. This is the tool Australian freelancers have been waiting for."</blockquote>
+    <div class="author">
+      <div class="author-avatar">MC</div>
+      <div class="author-info">
+        <div class="author-name">Mia Chen</div>
+        <div class="author-role">Freelance UX Designer, Melbourne</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUILT FOR AUSTRALIA -->
+<section class="australian" id="australian">
+  <div class="section-inner">
+    <div class="section-label">Built for Australia</div>
+    <div class="section-title">Not a US app with an Aussie flag slapped on.</div>
+    <div class="section-desc">Every feature is designed for Australian tax law, ATO requirements, and the way Aussie freelancers actually work.</div>
+    <div class="au-grid">
+      <div class="au-card">
+        <div class="au-icon">🇦🇺</div>
+        <h3>ATO Marginal Tax Rates</h3>
+        <p>Current 2025-26 brackets built in. Medicare levy included. Accurate to the dollar.</p>
+      </div>
+      <div class="au-card">
+        <div class="au-icon">🧾</div>
+        <h3>BAS & GST Native</h3>
+        <p>Auto-calculates GST collected and paid. Pre-fills BAS fields. Quarterly or monthly — you choose.</p>
+      </div>
+      <div class="au-card">
+        <div class="au-icon">🏠</div>
+        <h3>Home Office (67c/hr)</h3>
+        <p>ATO fixed-rate method built in. Track your hours, FlowFi calculates the deduction.</p>
+      </div>
+      <div class="au-card">
+        <div class="au-icon">🚗</div>
+        <h3>Mileage (85c/km)</h3>
+        <p>Current ATO rate applied automatically. Log trips with start/end locations and purpose.</p>
+      </div>
+      <div class="au-card">
+        <div class="au-icon">📑</div>
+        <h3>TPAR Reporting</h3>
+        <p>Taxable Payments Annual Report for contractors. Auto-generated from your payment data.</p>
+      </div>
+      <div class="au-card">
+        <div class="au-icon">💼</div>
+        <h3>Super at 11.5%</h3>
+        <p>Calculate super obligations at the current rate. Know what to set aside for your future.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="join">
+  <h2>Ready to take control of your freelance finances?</h2>
+  <p>Join the waitlist and be first to experience the financial OS that Australian freelancers have been waiting for.</p>
+  <form class="cta-form" onsubmit="return handleWaitlist(event, 'footer')">
+    <input type="email" placeholder="your@email.com" required id="footerEmail" autocomplete="email">
+    <button type="submit">Join the Waitlist</button>
+  </form>
+  <div class="cta-note">Free to join. No credit card required. First 100 members get founding pricing.</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">Flow<span>Fi</span></div>
+        <p>AI-powered financial OS for Australian freelancers and sole traders. Built in Australia, for Australians.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#">Roadmap</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="#">Blog</a>
+        <a href="#">Help Centre</a>
+        <a href="#">BAS Guide</a>
+        <a href="#">Tax Calculator</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="mailto:hello@flowfi.com.au">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 FlowFi. All rights reserved. ABN pending.</span>
+      <span>Made with 💜 in Australia</span>
+    </div>
+  </div>
+</footer>
+
+<!-- SUCCESS MODAL -->
+<div class="modal-overlay" id="successModal">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('successModal').classList.remove('active')">&times;</button>
+    <div class="check-icon">✓</div>
+    <h2>You're on the list! 🎉</h2>
+    <p>Thanks for joining the FlowFi waitlist. We'll email you when it's your turn to get early access.</p>
+    <p style="font-size:13px;color:var(--grey);margin-top:16px">Position <strong>#<span id="positionNum">128</span></strong> on the waitlist</p>
+  </div>
+</div>
+
+<script>
+// Nav scroll effect
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);
+});
+
+// Waitlist handler
+let waitlistNum=127;
+function handleWaitlist(e,source){
+  e.preventDefault();
+  const input=source==='hero'?document.getElementById('heroEmail'):document.getElementById('footerEmail');
+  const email=input.value.trim();
+  if(!email)return false;
+
+  const waitlist=JSON.parse(localStorage.getItem('flowfi_waitlist')||'[]');
+  if(waitlist.includes(email)){
+    alert('You\'re already on the waitlist! We\'ll be in touch soon.');
+    return false;
+  }
+  waitlist.push(email);
+  localStorage.setItem('flowfi_waitlist',JSON.stringify(waitlist));
+
+  waitlistNum++;
+  document.getElementById('waitlistCount').textContent=waitlistNum;
+  document.getElementById('positionNum').textContent=waitlistNum;
+  document.getElementById('successModal').classList.add('active');
+  input.value='';
+  return false;
+}
+
+// Close modal on overlay click
+document.getElementById('successModal').addEventListener('click',function(e){
+  if(e.target===this)this.classList.remove('active');
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',function(e){
+    e.preventDefault();
+    const el=document.querySelector(this.getAttribute('href'));
+    if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+
+// Animate elements on scroll
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.style.opacity='1';
+      entry.target.style.transform='translateY(0)';
+    }
+  });
+},{threshold:0.1});
+document.querySelectorAll('.feature-card,.step,.price-card,.au-card').forEach(el=>{
+  el.style.opacity='0';
+  el.style.transform='translateY(20px)';
+  el.style.transition='opacity 0.5s ease, transform 0.5s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
